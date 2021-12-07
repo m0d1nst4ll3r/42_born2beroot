@@ -2,11 +2,11 @@
 
 List of tasks :
 
-+ Install Debian <-- DONE (might need to reinstall with other settings)
-+ Partition correctly (non-bonus) <-- DONE
-+ Correct hostname <-- DONE
-+ Root user + login user <-- DONE 
-- login user belonging to user42 and sudo groups
++ +Install Debian <-- DONE (might need to reinstall with other settings)
++ +Partition correctly (non-bonus) <-- DONE
++ +Correct hostname <-- DONE
++ +Root user + login user <-- DONE 
++ +login user belonging to user42 and sudo groups (belongs to other groups too?)
 - Partition correctly (bonus)
 - SSH service on port 4242
 - UFW Firewall
@@ -62,7 +62,15 @@ After installing :
 Commands :
 
 - 'sudo adduser <username>' as root to add a user
+- 'sudo adduser <username> <group>' to add a user to a group
+- 'gpasswd -d <username> <group>' to remove a user from a group
 - swap partition swappiness found in '/proc/sys/vm/swappiness' (or use 'sysctl vm.swappiness=20')
 - 'more /etc/passwd' to look at the userlist
 - 'hostnamectl' and 'more /etc/hosts' to look at the hostname
 - 'hostnamectl set-hostname newhostname' and then modify /etc/hosts (use vim, apt install vim)
+- 'sudo apt install ufw' and 'sudo ufw status verbose' to install ufw and check if it's active
+- 'sudo ufw enable' to enable and 'sudo ufw allow 4242/tcp' to add 4242
+- apparently no need to do 'sudo ufw allow OpenSSH' but why?
+- for ssh : 'sudo systemctl status ssh' to check ssh status
+- 'sudo service ssh stop' to stop or start openssh
+- ssh automatically opens on boot, to disable permanently use 'sudo systemctl disable ssh'
