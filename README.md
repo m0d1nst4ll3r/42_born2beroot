@@ -1,8 +1,47 @@
 #42_born2beroot
 
-- Set up a virtualbox
-- Install latest Debian
-- Figure out what tf I'm supposed to do
+List of tasks :
+
++ Install Debian <-- DONE (might need to reinstall with other settings)
++ Partition correctly (non-bonus) <-- DONE
++ Correct hostname <-- DONE
++ Root user + login user <-- DONE 
+- login user belonging to user42 and sudo groups
+- Partition correctly (bonus)
+- SSH service on port 4242
+- UFW Firewall
+- Configure sudo with strict rules
+  - max 3 attempts to get sudo pwd right
+  - custom message when wrong pwd (remaining attempts?)
+  - each action using sudo is archived (input and output) in '/var/log/sudo'
+  - requiretty (https://stackoverflow.com/questions/67985925/why-would-i-want-to-require-a-tty-for-sudo-whats-the-security-benefit-of-requi)
+  - restrict paths that can be used by sudo
+- Strong password policy (+ change existing pwds)
+  - expire every 30 days
+  - warning 7 days before
+  - min of 2 days before new pwd
+  - pwd rules
+    - at least 10 characters long
+    - one uppercase letter, one number
+    - no more than 3 identical characters
+    - not include the name of the user
+    - at least 7 characters not part of old pwd (except for root)
+- monitoring.sh bash script
+  - runs every 10 minutes
+  - The architecture of your operating system and its kernel version.
+  - The number of physical processors.
+  - The number of virtual processors.
+  - The current available RAM on your server and its utilization rate as a percentage.
+  - The current available memory on your server and its utilization rate as a percentage.
+  - The current utilization rate of your processors as a percentage.
+  - The date and time of the last reboot.
+  - Whether LVM is active or not.
+  - The number of active connections.
+  - The number of users using the server.
+  - The IPv4 address of your server and its MAC (Media Access Control) address.
+  - The number of commands executed with the sudo program.
+- WordPress bonus
+- Set up service
 
 Steps to install :
 
@@ -22,15 +61,8 @@ After installing :
 
 Commands :
 
-- 'adduser <username>' as root to add a user
+- 'sudo adduser <username>' as root to add a user
 - swap partition swappiness found in '/proc/sys/vm/swappiness' (or use 'sysctl vm.swappiness=20')
 - 'more /etc/passwd' to look at the userlist
 - 'hostnamectl' and 'more /etc/hosts' to look at the hostname
 - 'hostnamectl set-hostname newhostname' and then modify /etc/hosts (use vim, apt install vim)
-
-Todo :
-
-- SSH ? 4242 ?!
-- strong password policy?
-- install (ok) and configure (wot) sudo?
-- monitoring script?
