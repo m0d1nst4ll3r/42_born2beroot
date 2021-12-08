@@ -23,7 +23,7 @@ List of tasks :
   - pwd rules
     - at least 10 characters long
     - one uppercase letter, one number
-    - no more than 3 identical characters
+    - no more than 3 identical characters in a row
     - not include the name of the user
     - at least 7 characters not part of old pwd (except for root)
 - monitoring.sh bash script
@@ -63,6 +63,7 @@ Commands :
 
 - 'sudo adduser <username>' as root to add a user
 - 'sudo adduser <username> <group>' to add a user to a group
+- 'groupadd groupname'
 - 'gpasswd -d <username> <group>' to remove a user from a group
 - swap partition swappiness found in '/proc/sys/vm/swappiness' (or use 'sysctl vm.swappiness=20')
 - 'more /etc/passwd' to look at the userlist
@@ -74,3 +75,13 @@ Commands :
 - for ssh : 'sudo systemctl status ssh' to check ssh status
 - 'sudo service ssh stop' to stop or start openssh
 - ssh automatically opens on boot, to disable permanently use 'sudo systemctl disable ssh'
+- to set up a strong pwd policy, first, install 'sudo apt-get install libpam-cracklib'
+- you'll have to edit a file, you can back it up with 'sudo cp /etc/pam.d/common-password /etc/pam.d/common-password.bak'
+- edit it (use vim for example), this website explains the options you have https://ostechnix.com/force-users-use-strong-passwords-debian-ubuntu/ and manual https://linux.die.net/man/8/pam_cracklib
+  - minlen=10
+  - difok=7
+  - reject_username
+  - ucredit=-1 and dcredit=-1
+  - maxrepeat=3
+  - enforce_for_root (how to enforce some rules for root but not all?!?)
+- 
