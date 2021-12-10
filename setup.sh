@@ -50,7 +50,7 @@
 #			- monitoring.sh
 #			- setup.sh
 #			- common-password
-#			- more...
+#			- sshd_config
 #		b. Run this script 'bash setup.sh'
 #		c. All done!
 
@@ -65,6 +65,7 @@ USER="rpohlen"
 #####################################################
 # Install required packages + a few other nice ones #
 #####################################################
+echo "########Installing packages..."
 apt update
 apt install sudo
 apt install apparmor
@@ -79,7 +80,7 @@ apt install vim
 ######################################
 # Copy already modified config files #
 ######################################
-
+echo "########Copying files..."
 # make sure permissions are set correctly
 chmod 440 sudoers
 chmod 644 sshd_config
@@ -97,6 +98,8 @@ cp sudoers /etc/
 cp crontab /etc/
 cp monitoring.sh /
 
+echo "########Setting up groups, UFW, and sudo logging..."
+
 # Adds user42 group and adds groups to your user
 addgroup user42
 adduser $(USER) user42 sudo
@@ -104,3 +107,28 @@ adduser $(USER) user42 sudo
 # Sets up UFW
 ufw allow 4242
 ufw enable
+
+# Creates sudo log dir
+mkdir /var/log/sudo
+chmod 755 /var/log/sudo
+
+# All done !
+echo "Everything is set up as it should be,"
+echo "BUT remember to update your user & root passwords"
+echo "now that a strong password policy has been created."
+echo ""
+echo "During the defense, you should know how to :"
+echo "	- add a user (adduser)"
+echo "	- add a group (addgroup)"
+echo "	- add that user to a group (adduser <user> <group>)"
+echo "	- change the hostname (hostnamectl set-hostname <hostname>)"
+echo "	- ssh a session with that user (ssh user@127.0.0.1 -p 42420)"
+echo "	- show the changes you've made"
+echo "		- strong pwd policy : /etc/pam.d/common-password"
+echo "		- sudo rules :	/etc/sudoers (visudo command)"
+echo "		- cron task :	/etc/crontab"
+echo "		- ssh config :	/etc/ssh/sshd_config"
+echo "		- ufw rules (sudo ufw status)"
+echo "	- show your monitoring script (/monitoring.sh)"
+echo "	- explain how they work"
+echo "	- more..."
