@@ -37,22 +37,19 @@
 #		j. Finish, go over each LVM you've created to mount them, finish, yes
 #		k. Wait for the install, no, enter enter enter (defaults), no
 #		l. Uncheck SSH and Standard system utilities, yes to GRUB, reboot
-#	4. Connect via SSH (to copy this file into your VM)
+#	4. Setup SSH (to copy this file into your VM)
 #		a. log as root
 #		b. apt install openssh-server
 #		c. 'vi /etc/ssh/sshd-config' uncomment the 'Port 22' line and change 22 to 4242
 #		d. In Virtualbox, click on Network, Advanced, Port Forwarding
 #		e. Add a port, SSH, TCP, 127.0.0.1, 42420, 10.0.2.15, 4242
-#		f. On a host terminal, type ssh login@127.0.0.1 -p 42420
-#		g. Input your password
 #	5. Set up your Debian with the help of this script
-#		a. Copy the following files:
-#			- monitoring.sh
-#			- setup.sh
-#			- common-password
-#			- sshd_config
-#		b. Run this script 'bash setup.sh'
-#		c. All done!
+#		a. Clone this repo if you haven't already (on the host)
+#		b. Inside the repo, type 'scp -P 42420 * login@127.0.0.1:/tmp'
+#		c. On your machine, as root, cd /tmp
+#		d. Run this script 'sh setup.sh'
+#	6. Make sure you understand everything that just happened
+#	7. All done!
 
 #######################################
 # This script should be run as root   #
@@ -107,7 +104,8 @@ echo "########Setting up groups, UFW, and sudo logging..."
 
 # Adds user42 group and adds groups to your user
 addgroup user42
-adduser $(USER) user42 sudo
+adduser $USER user42
+adduser $USER sudo
 
 # Sets up UFW
 ufw allow 4242
@@ -118,6 +116,8 @@ mkdir /var/log/sudo
 chmod 755 /var/log/sudo
 
 # All done !
+echo ""
+echo ""
 echo "Everything is set up as it should be,"
 echo "BUT remember to update your user & root passwords"
 echo "now that a strong password policy has been created."
