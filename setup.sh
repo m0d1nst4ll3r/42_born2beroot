@@ -49,7 +49,8 @@
 #		a. Copy the following files:
 #			- monitoring.sh
 #			- setup.sh
-#			- more... (pam etc)
+#			- common-password
+#			- more...
 #		b. Run this script 'bash setup.sh'
 #		c. All done!
 
@@ -69,6 +70,7 @@ apt install sudo
 apt install apparmor
 apt install ufw
 apt install libpam-cracklib
+apt install cron
 apt install vim
 # more?
 #apt install lighttpd
@@ -78,9 +80,22 @@ apt install vim
 # Copy already modified config files #
 ######################################
 
+# make sure permissions are set correctly
+chmod 440 sudoers
+chmod 644 sshd_config
+chmod 644 common-password
+chmod 644 crontab
+chmod 644 monitoring.sh
+
 # ssh config file (disable ssh root login, change port)
 cp sshd_config /etc/ssh/sshd_config
 # pam cracklib file (strong password policy)
+cp common-password /etc/pam.d/
+# sudo rules
+cp sudoers /etc/
+# cron (monitoring.sh)
+cp crontab /etc/
+cp monitoring.sh /
 
 # Adds user42 group and adds groups to your user
 addgroup user42
