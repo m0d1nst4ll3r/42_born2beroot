@@ -59,8 +59,13 @@
 # (command: 'su', then type password) #
 #######################################
 
-# Change this to your username
-USER="rpohlen"
+read -p "Enter your username: " USER
+
+if [ "$(whoami)" != "root" ]
+then
+	echo "You are not root! Exiting..."
+	exit
+fi
 
 #####################################################
 # Install required packages + a few other nice ones #

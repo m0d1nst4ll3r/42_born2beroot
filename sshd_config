@@ -13,6 +13,7 @@
 Include /etc/ssh/sshd_config.d/*.conf
 
 Port 4242
+PermitRootLogin no
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
