@@ -1,13 +1,18 @@
 #42_born2beroot
 
+(estimated time: 30 minutes)
+All of the mandatory tasks have been automated in setup.sh
+Read and execute all the install instructions in setup.sh
+Set up SSH to copy the files over to your VM using scp
+Log as root and run setup.sh
+Your VM is fully set up, except for wordpress and the extra service
+
 List of tasks :
 
-+ +Install Debian <-- DONE (might need to reinstall with other settings)
-+ +Partition correctly (non-bonus) <-- DONE
-+ +Correct hostname <-- DONE
-+ +Root user + login user <-- DONE 
-+ +login user belonging to user42 and sudo groups (belongs to other groups too?)
-- Partition correctly (bonus)
+- Partition correctly (including bonus) (DO THIS AT INSTALL)
+- Correct hostname
+- Root user + login user
+- login user belonging to user42 and sudo groups
 - SSH service on port 4242
 - UFW Firewall
 - Configure sudo with strict rules
@@ -42,46 +47,3 @@ List of tasks :
   - The number of commands executed with the sudo program.
 - WordPress bonus
 - Set up service
-
-Steps to install :
-
-- https://www.youtube.com/watch?v=gi8Qif4SaUc
-- You can do a graphic automated install
-- Make sure to activate root user and give it a password
-- For the partitioning, choose encrypted and separate - I'm hoping there's a way to add the other LVM partitions later with some commands - if so I'll document them
-- When choosing modules, only check ssh server and standard system utilities
-- Install GRUB and then reboot, you debian is installed
-
-After installing :
-
-- my system doesn't have sudo for some reason, in that case: su root, apt install sudo
-- sudo apt update
-- sudo apt install aptitude
-- you can run aptitude and look at all the packages you have or don't have
-
-Commands :
-
-- 'sudo adduser <username>' as root to add a user
-- 'sudo adduser <username> <group>' to add a user to a group
-- 'groupadd groupname'
-- 'gpasswd -d <username> <group>' to remove a user from a group
-- swap partition swappiness found in '/proc/sys/vm/swappiness' (or use 'sysctl vm.swappiness=20')
-- 'more /etc/passwd' to look at the userlist
-- 'hostnamectl' and 'more /etc/hosts' to look at the hostname
-- 'hostnamectl set-hostname newhostname' and then modify /etc/hosts (use vim, apt install vim)
-- 'sudo apt install ufw' and 'sudo ufw status verbose' to install ufw and check if it's active
-- 'sudo ufw enable' to enable and 'sudo ufw allow 4242/tcp' to add 4242
-- apparently no need to do 'sudo ufw allow OpenSSH' but why?
-- for ssh : 'sudo systemctl status ssh' to check ssh status
-- 'sudo service ssh stop' to stop or start openssh
-- ssh automatically opens on boot, to disable permanently use 'sudo systemctl disable ssh'
-- to set up a strong pwd policy, first, install 'sudo apt-get install libpam-cracklib'
-- you'll have to edit a file, you can back it up with 'sudo cp /etc/pam.d/common-password /etc/pam.d/common-password.bak'
-- edit it (use vim for example), this website explains the options you have https://ostechnix.com/force-users-use-strong-passwords-debian-ubuntu/ and manual https://linux.die.net/man/8/pam_cracklib
-  - minlen=10
-  - difok=7
-  - reject_username
-  - ucredit=-1 and dcredit=-1
-  - maxrepeat=3
-  - enforce_for_root (how to enforce some rules for root but not all?!?)
-- 
