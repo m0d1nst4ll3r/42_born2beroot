@@ -43,6 +43,7 @@
 #		c. 'vi /etc/ssh/sshd-config' uncomment the 'Port 22' line and change 22 to 4242
 #		d. In Virtualbox, click on Network, Advanced, Port Forwarding
 #		e. Add a port, SSH, TCP, 127.0.0.1, 42420, 10.0.2.15, 4242
+#		f. Restart SSH (systemctl restart ssh)
 #	5. Set up your Debian with the help of this script
 #		a. Clone this repo if you haven't already (on the host)
 #		b. Inside the repo, type 'scp -P 42420 * login@127.0.0.1:/tmp'
