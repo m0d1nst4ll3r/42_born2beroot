@@ -3,9 +3,13 @@
 (estimated time: 30 minutes)
 
 All of the mandatory tasks have been automated in setup.sh
+
 Read and execute all the install instructions in setup.sh
+
 Set up SSH to copy the files over to your VM using scp
+
 Log as root and run setup.sh
+
 Your VM is fully set up, except for wordpress and the extra service
 
 List of tasks :
