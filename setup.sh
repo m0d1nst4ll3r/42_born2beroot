@@ -119,6 +119,7 @@ chmod 755 /var/log/sudo
 # All done !
 echo "\n\nEverything is set up as it should be!"
 echo "\n>>>REMEMBER TO UPDATE YOUR USER & ROOT PASSWORDS<<<"
+echo "				(passwd root and passwd login)"
 echo "\nDuring the defense, you should know how to :"
 echo "	- add a user (adduser)"
 echo "	- add a group (addgroup)"
