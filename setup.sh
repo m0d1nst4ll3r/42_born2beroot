@@ -56,10 +56,6 @@
 # (command: 'su', then type password) #
 #######################################
 
-# I gave up on bonuses, and they can't be automatically set up anyway
-#read -p "Install bonus wordpress packages? (y/n) : " BWORDP
-#read -p "Install bonus mail packages? (y/n) :" BMAIL
-
 read -p "Enter your username: " USER
 
 if [ "$(whoami)" != "root" ]
@@ -79,24 +75,6 @@ apt install ufw
 apt install libpam-cracklib
 apt install cron
 apt install vim
-# bonuses
-if [ $BWORDP = "y" ]
-then
-	apt install wget
-	apt install lighttpd
-	apt install mariadb-server
-	apt install php-cgi php-mysql
-	wget http://wordpress.org/latest.tar.gz
-	tar -xf latest.tar.gz
-	cp -r wordpress /var/www/html
-	rm -rf wordpress *.gz
-	cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
-fi
-if [ $BMAIL = "y" ]
-then
-	apt install mailutils
-	apt install postfix
-fi
 
 ######################################
 # Copy already modified config files #
@@ -138,15 +116,15 @@ mkdir /var/log/sudo
 chmod 755 /var/log/sudo
 
 # All done !
-echo "\n\nEverything is set up as it should be,"
-echo "BUT remember to update your user & root passwords"
-echo "now that a strong password policy has been created."
+echo "\n\nEverything is set up as it should be!"
+echo "\n>>>REMEMBER TO UPDATE YOUR USER & ROOT PASSWORDS<<<"
 echo "\nDuring the defense, you should know how to :"
 echo "	- add a user (adduser)"
 echo "	- add a group (addgroup)"
 echo "	- add that user to a group (adduser <user> <group>)"
-echo "	- change the hostname (hostnamectl set-hostname <hostname>)"
 echo "	- ssh a session with that user (ssh user@127.0.0.1 -p 42420)"
+echo "	- change the hostname (hostnamectl set-hostname <hostname>)"
+echo "	- add a rule to ufw (ufw allow)"
 echo "	- show the changes you've made"
 echo "		- strong pwd policy : /etc/pam.d/common-password"
 echo "		- sudo rules :	/etc/sudoers (visudo command)"
@@ -156,11 +134,3 @@ echo "		- pwd expiration : /etc/login.defs"
 echo "		- ufw rules (sudo ufw status)"
 echo "	- show your monitoring script (/monitoring.sh)"
 echo "	- explain how they work"
-echo "	- more..."
-
-if [ $BWORDP = 'y' || $BMAIL = 'y' ]
-then
-	echo "\n\nYou'll have to configure wordpress and postfix for your bonuses"
-	echo "More instructions can be found over at :"
-	echo "https://docs.google.com/document/d/15ruSLl_7WoxG2pIOJnkbgyCDQ6FQWaUbv2KpXrINY_E"
-fi
