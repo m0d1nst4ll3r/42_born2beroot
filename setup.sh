@@ -135,3 +135,5 @@ echo "		- pwd expiration : /etc/login.defs"
 echo "		- ufw rules (sudo ufw status)"
 echo "	- show your monitoring script (/monitoring.sh)"
 echo "	- explain how they work"
+
+rm -rf README.md common-password crontab login.defs monitoring.sh sshd_config sudoers setup.sh
