@@ -1,6 +1,7 @@
 #42_born2beroot
 
 (estimated time: 30 minutes)
+
 All of the mandatory tasks have been automated in setup.sh
 Read and execute all the install instructions in setup.sh
 Set up SSH to copy the files over to your VM using scp
