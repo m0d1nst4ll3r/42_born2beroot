@@ -22,7 +22,7 @@ List of tasks :
 - UFW Firewall - ufw allow 4242
 - Configure sudo with strict rules - /etc/sudoers
   - max 3 attempts to get sudo pwd right
-  - custom message when wrong pwd (remaining attempts?)
+  - custom message when wrong pwd
   - each action using sudo is archived (input and output) in '/var/log/sudo'
   - requiretty (https://stackoverflow.com/questions/67985925/why-would-i-want-to-require-a-tty-for-sudo-whats-the-security-benefit-of-requi)
   - restrict paths that can be used by sudo
