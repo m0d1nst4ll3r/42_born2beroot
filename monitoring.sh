@@ -6,7 +6,7 @@ M_VCPU=$(nproc)
 M_RAM=$(free --mega | grep Mem | awk '{printf "%d/%dMB (%d%%)", $3, $2, $3/$2*100}')
 M_DISK=$(df | tail -n+2 | awk '{tot+=$2} {cur+=$3} END {printf "%.1f/%.1fGB (%.1f%%)", cur/1000000, tot/1000000, cur/tot*100}')
 M_LOAD=$(top -bn1 | grep Cpu | tr -d 'usydhwatni,' | awk '{printf "%.1f%%", 100 - $5 - $9}')
-M_BOOT=$(who -b | awk '{print $3}')
+M_BOOT=$(who -b | awk '{printf "%s %s", $3, $4}')
 M_LVM=$(
 if [ $(lsblk | grep "lvm" | wc -l) -gt "0" ]
 then echo "yes"
