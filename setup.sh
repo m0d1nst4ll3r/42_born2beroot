@@ -70,12 +70,12 @@ fi
 #####################################################
 echo "########Installing packages..."
 apt update
-apt install sudo
-apt install apparmor
-apt install ufw
-apt install libpam-cracklib
-apt install cron
-apt install vim
+apt -y install sudo
+apt -y install apparmor
+apt -y install ufw
+apt -y install libpam-cracklib
+apt -y install cron
+apt -y install vim
 
 ######################################
 # Copy already modified config files #
