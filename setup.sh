@@ -87,6 +87,7 @@ echo "########Copying files..."
 chmod 440 sudoers
 chmod 644 sshd_config
 chmod 644 common-password
+chmod 644 login.defs
 chmod 644 crontab
 chmod 644 monitoring.sh
 
@@ -96,6 +97,8 @@ cp sshd_config /etc/ssh/sshd_config
 cp common-password /etc/pam.d/
 # sudo rules
 cp sudoers /etc/
+# password expiration
+cp login.defs /etc/
 # cron (monitoring.sh)
 cp crontab /etc/
 cp monitoring.sh /
