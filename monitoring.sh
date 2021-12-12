@@ -15,7 +15,7 @@ fi)
 M_TCP=$(ss -s | grep estab | awk '{print $4}' | tr -d ',\n' && echo ' ESTABLISHED')
 M_USER=$(who | awk '{print $1}' | sort | uniq | wc -l)
 M_IP=$(ip a | grep 'ether\|global' | awk '{print $2}' | sed 's/\/.*//' | tr '\n' ' ' | awk '{printf "IP %s (%s)", $2, $1}')
-M_SUDO=$(cat /var/log/sudo/logs | grep -c "COMMAND" && echo " cmd")
+M_SUDO=$(cat /var/log/sudo/logs | grep -c "COMMAND" | tr -d '\n' && echo " cmd")
 
 echo "#Architecture	: ${M_ARCH}"
 echo "#CPU Physical	: ${M_CPU}"
