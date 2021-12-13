@@ -99,7 +99,7 @@ cp sudoers /etc/
 cp login.defs /etc/
 # cron (monitoring.sh)
 cp crontab /etc/
-cp monitoring.sh /
+cp monitoring.sh /root/
 
 echo "########Setting up groups, UFW, and sudo logging..."
 
