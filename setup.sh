@@ -108,6 +108,10 @@ addgroup user42
 adduser $USER user42
 adduser $USER sudo
 
+# Sets up password expiration for already created accounts
+chage -M 30 -m 2 -W 7 $USER
+chage -M 30 -m 2 -W 7 root
+
 # Sets up UFW
 ufw allow 4242
 ufw enable
